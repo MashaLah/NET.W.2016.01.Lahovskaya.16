@@ -59,82 +59,84 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ingredient.cs">
-      <DependentUpon>ShawarmModel.tt</DependentUpon>
+      <DependentUpon>ModelShawarma.tt</DependentUpon>
     </Compile>
     <Compile Include="IngredientCategory.cs">
-      <DependentUpon>ShawarmModel.tt</DependentUpon>
+      <DependentUpon>ModelShawarma.tt</DependentUpon>
     </Compile>
     <Compile Include="LinqQueries.cs" />
-    <Compile Include="OrderDetails.cs">
-      <DependentUpon>ShawarmModel.tt</DependentUpon>
+    <Compile Include="ModelShawarma.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelShawarma.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelShawarma.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelShawarma.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelShawarma.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelShawarma.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="OrderDetail.cs">
+      <DependentUpon>ModelShawarma.tt</DependentUpon>
     </Compile>
     <Compile Include="OrderHeader.cs">
-      <DependentUpon>ShawarmModel.tt</DependentUpon>
+      <DependentUpon>ModelShawarma.tt</DependentUpon>
     </Compile>
     <Compile Include="PriceController.cs">
-      <DependentUpon>ShawarmModel.tt</DependentUpon>
+      <DependentUpon>ModelShawarma.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Seller.cs">
-      <DependentUpon>ShawarmModel.tt</DependentUpon>
+      <DependentUpon>ModelShawarma.tt</DependentUpon>
     </Compile>
     <Compile Include="SellingPoint.cs">
-      <DependentUpon>ShawarmModel.tt</DependentUpon>
+      <DependentUpon>ModelShawarma.tt</DependentUpon>
     </Compile>
     <Compile Include="SellingPointCategory.cs">
-      <DependentUpon>ShawarmModel.tt</DependentUpon>
+      <DependentUpon>ModelShawarma.tt</DependentUpon>
     </Compile>
     <Compile Include="Shawarma.cs">
-      <DependentUpon>ShawarmModel.tt</DependentUpon>
+      <DependentUpon>ModelShawarma.tt</DependentUpon>
     </Compile>
     <Compile Include="ShawarmaRecipe.cs">
-      <DependentUpon>ShawarmModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ShawarmModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ShawarmModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ShawarmModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ShawarmModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ShawarmModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ShawarmModel.edmx</DependentUpon>
+      <DependentUpon>ModelShawarma.tt</DependentUpon>
     </Compile>
     <Compile Include="TimeController.cs">
-      <DependentUpon>ShawarmModel.tt</DependentUpon>
+      <DependentUpon>ModelShawarma.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <EntityDeploy Include="ShawarmModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ShawarmModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="packages.config" />
-    <None Include="ShawarmModel.edmx.diagram">
-      <DependentUpon>ShawarmModel.edmx</DependentUpon>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ShawarmModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ShawarmModel.edmx</DependentUpon>
-      <LastGenOutput>ShawarmModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="ShawarmModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ShawarmModel.edmx</DependentUpon>
-      <LastGenOutput>ShawarmModel.cs</LastGenOutput>
-    </Content>
+    <EntityDeploy Include="ModelShawarma.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelShawarma.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ModelShawarma.edmx.diagram">
+      <DependentUpon>ModelShawarma.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ModelShawarma.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelShawarma.edmx</DependentUpon>
+      <LastGenOutput>ModelShawarma.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelShawarma.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelShawarma.edmx</DependentUpon>
+      <LastGenOutput>ModelShawarma.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

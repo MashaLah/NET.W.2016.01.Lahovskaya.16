@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="IngredientID" />
           </Key>
-          <Property Name="IngredientID" Type="int" Nullable="false" />
+          <Property Name="IngredientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IngredientName" Type="varchar" MaxLength="50" />
           <Property Name="TotalWeight" Type="int" Nullable="false" />
           <Property Name="CategoryID" Type="int" Nullable="false" />
@@ -18,7 +18,7 @@
           <Key>
             <PropertyRef Name="CategoryID" />
           </Key>
-          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CategoryName" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
@@ -37,7 +37,7 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
           <Key>
             <PropertyRef Name="OrderHeaderID" />
           </Key>
-          <Property Name="OrderHeaderID" Type="int" Nullable="false" />
+          <Property Name="OrderHeaderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OrderDate" Type="date" Nullable="false" />
           <Property Name="SellerID" Type="int" Nullable="false" />
         </EntityType>
@@ -45,7 +45,7 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
           <Key>
             <PropertyRef Name="PriceControllerID" />
           </Key>
-          <Property Name="PriceControllerID" Type="int" Nullable="false" />
+          <Property Name="PriceControllerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ShawarmaID" Type="int" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="SellingPointID" Type="int" Nullable="false" />
@@ -55,7 +55,7 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
           <Key>
             <PropertyRef Name="SellerID" />
           </Key>
-          <Property Name="SellerID" Type="int" Nullable="false" />
+          <Property Name="SellerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SellerName" Type="varchar" MaxLength="50" />
           <Property Name="SellingPointID" Type="int" Nullable="false" />
         </EntityType>
@@ -63,7 +63,7 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
           <Key>
             <PropertyRef Name="SellingPointID" />
           </Key>
-          <Property Name="SellingPointID" Type="int" Nullable="false" />
+          <Property Name="SellingPointID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Adress" Type="varchar" MaxLength="50" />
           <Property Name="SellingPointCategoryID" Type="int" Nullable="false" />
           <Property Name="ShawarmaTitle" Type="varchar" MaxLength="50" />
@@ -72,14 +72,14 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
           <Key>
             <PropertyRef Name="SellingPointCategoryID" />
           </Key>
-          <Property Name="SellingPointCategoryID" Type="int" Nullable="false" />
+          <Property Name="SellingPointCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SellingPointCategoryName" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Shawarma">
           <Key>
             <PropertyRef Name="ShawarmaID" />
           </Key>
-          <Property Name="ShawarmaID" Type="int" Nullable="false" />
+          <Property Name="ShawarmaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ShawarmaName" Type="varchar" MaxLength="50" />
           <Property Name="CookingTime" Type="int" Nullable="false" />
         </EntityType>
@@ -87,7 +87,7 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
           <Key>
             <PropertyRef Name="ShawarmaRecipeID" />
           </Key>
-          <Property Name="ShawarmaRecipeID" Type="int" Nullable="false" />
+          <Property Name="ShawarmaRecipeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ShawarmaID" Type="int" Nullable="false" />
           <Property Name="IngredientID" Type="int" Nullable="false" />
           <Property Name="Weight" Type="int" Nullable="false" />
@@ -96,7 +96,7 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
           <Key>
             <PropertyRef Name="TimeControllerID" />
           </Key>
-          <Property Name="TimeControllerID" Type="int" Nullable="false" />
+          <Property Name="TimeControllerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SellerID" Type="int" Nullable="false" />
           <Property Name="WorkStart" Type="datetime" Nullable="false" />
           <Property Name="WorkEnd" Type="datetime" Nullable="false" />
@@ -110,6 +110,30 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
             </Principal>
             <Dependent Role="Ingredient">
               <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="NewShawarmaRecipe_fk0">
+          <End Role="Shawarma" Type="Self.Shawarma" Multiplicity="1" />
+          <End Role="ShawarmaRecipe" Type="Self.ShawarmaRecipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shawarma">
+              <PropertyRef Name="ShawarmaID" />
+            </Principal>
+            <Dependent Role="ShawarmaRecipe">
+              <PropertyRef Name="ShawarmaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="NewShawarmaRecipe_fk1">
+          <End Role="Ingredient" Type="Self.Ingredient" Multiplicity="1" />
+          <End Role="ShawarmaRecipe" Type="Self.ShawarmaRecipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ingredient">
+              <PropertyRef Name="IngredientID" />
+            </Principal>
+            <Dependent Role="ShawarmaRecipe">
+              <PropertyRef Name="IngredientID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -194,30 +218,6 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
             </Principal>
             <Dependent Role="SellingPoint">
               <PropertyRef Name="SellingPointCategoryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ShawarmaRecipe_fk0">
-          <End Role="Shawarma" Type="Self.Shawarma" Multiplicity="1" />
-          <End Role="ShawarmaRecipe" Type="Self.ShawarmaRecipe" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Shawarma">
-              <PropertyRef Name="ShawarmaID" />
-            </Principal>
-            <Dependent Role="ShawarmaRecipe">
-              <PropertyRef Name="ShawarmaID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ShawarmaRecipe_fk1">
-          <End Role="Ingredient" Type="Self.Ingredient" Multiplicity="1" />
-          <End Role="ShawarmaRecipe" Type="Self.ShawarmaRecipe" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ingredient">
-              <PropertyRef Name="IngredientID" />
-            </Principal>
-            <Dependent Role="ShawarmaRecipe">
-              <PropertyRef Name="IngredientID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -255,6 +255,14 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
             <End Role="IngredientCategory" EntitySet="IngredientCategory" />
             <End Role="Ingredient" EntitySet="Ingredient" />
           </AssociationSet>
+          <AssociationSet Name="NewShawarmaRecipe_fk0" Association="Self.NewShawarmaRecipe_fk0">
+            <End Role="Shawarma" EntitySet="Shawarma" />
+            <End Role="ShawarmaRecipe" EntitySet="ShawarmaRecipe" />
+          </AssociationSet>
+          <AssociationSet Name="NewShawarmaRecipe_fk1" Association="Self.NewShawarmaRecipe_fk1">
+            <End Role="Ingredient" EntitySet="Ingredient" />
+            <End Role="ShawarmaRecipe" EntitySet="ShawarmaRecipe" />
+          </AssociationSet>
           <AssociationSet Name="OrderDetails_fk0" Association="Self.OrderDetails_fk0">
             <End Role="OrderHeader" EntitySet="OrderHeader" />
             <End Role="OrderDetails" EntitySet="OrderDetails" />
@@ -283,14 +291,6 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
             <End Role="SellingPointCategory" EntitySet="SellingPointCategory" />
             <End Role="SellingPoint" EntitySet="SellingPoint" />
           </AssociationSet>
-          <AssociationSet Name="ShawarmaRecipe_fk0" Association="Self.ShawarmaRecipe_fk0">
-            <End Role="Shawarma" EntitySet="Shawarma" />
-            <End Role="ShawarmaRecipe" EntitySet="ShawarmaRecipe" />
-          </AssociationSet>
-          <AssociationSet Name="ShawarmaRecipe_fk1" Association="Self.ShawarmaRecipe_fk1">
-            <End Role="Ingredient" EntitySet="Ingredient" />
-            <End Role="ShawarmaRecipe" EntitySet="ShawarmaRecipe" />
-          </AssociationSet>
           <AssociationSet Name="TimeController_fk0" Association="Self.TimeController_fk0">
             <End Role="Seller" EntitySet="Seller" />
             <End Role="TimeController" EntitySet="TimeController" />
@@ -305,26 +305,26 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
           <Key>
             <PropertyRef Name="IngredientID" />
           </Key>
-          <Property Name="IngredientID" Type="Int32" Nullable="false" />
+          <Property Name="IngredientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IngredientName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TotalWeight" Type="Int32" Nullable="false" />
           <Property Name="CategoryID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="IngredientCategory" Relationship="Self.Ingredient_fk0" FromRole="Ingredient" ToRole="IngredientCategory" />
-          <NavigationProperty Name="ShawarmaRecipe" Relationship="Self.ShawarmaRecipe_fk1" FromRole="Ingredient" ToRole="ShawarmaRecipe" />
+          <NavigationProperty Name="ShawarmaRecipes" Relationship="Self.NewShawarmaRecipe_fk1" FromRole="Ingredient" ToRole="ShawarmaRecipe" />
         </EntityType>
         <EntityType Name="IngredientCategory">
           <Key>
             <PropertyRef Name="CategoryID" />
           </Key>
-          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Ingredient" Relationship="Self.Ingredient_fk0" FromRole="IngredientCategory" ToRole="Ingredient" />
+          <NavigationProperty Name="Ingredients" Relationship="Self.Ingredient_fk0" FromRole="IngredientCategory" ToRole="Ingredient" />
         </EntityType>
         <EntityType Name="OrderHeader">
           <Key>
             <PropertyRef Name="OrderHeaderID" />
           </Key>
-          <Property Name="OrderHeaderID" Type="Int32" Nullable="false" />
+          <Property Name="OrderHeaderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="SellerID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="OrderDetails" Relationship="Self.OrderDetails_fk0" FromRole="OrderHeader" ToRole="OrderDetails" />
@@ -334,7 +334,7 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
           <Key>
             <PropertyRef Name="PriceControllerID" />
           </Key>
-          <Property Name="PriceControllerID" Type="Int32" Nullable="false" />
+          <Property Name="PriceControllerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ShawarmaID" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="SellingPointID" Type="Int32" Nullable="false" />
@@ -346,66 +346,66 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
           <Key>
             <PropertyRef Name="SellerID" />
           </Key>
-          <Property Name="SellerID" Type="Int32" Nullable="false" />
+          <Property Name="SellerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SellerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="SellingPointID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="OrderHeader" Relationship="Self.OrderHeader_fk0" FromRole="Seller" ToRole="OrderHeader" />
+          <NavigationProperty Name="OrderHeaders" Relationship="Self.OrderHeader_fk0" FromRole="Seller" ToRole="OrderHeader" />
           <NavigationProperty Name="SellingPoint" Relationship="Self.Seller_fk0" FromRole="Seller" ToRole="SellingPoint" />
-          <NavigationProperty Name="TimeController" Relationship="Self.TimeController_fk0" FromRole="Seller" ToRole="TimeController" />
+          <NavigationProperty Name="TimeControllers" Relationship="Self.TimeController_fk0" FromRole="Seller" ToRole="TimeController" />
         </EntityType>
         <EntityType Name="SellingPoint">
           <Key>
             <PropertyRef Name="SellingPointID" />
           </Key>
-          <Property Name="SellingPointID" Type="Int32" Nullable="false" />
+          <Property Name="SellingPointID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Adress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="SellingPointCategoryID" Type="Int32" Nullable="false" />
           <Property Name="ShawarmaTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="PriceController" Relationship="Self.PriceController_fk1" FromRole="SellingPoint" ToRole="PriceController" />
-          <NavigationProperty Name="Seller" Relationship="Self.Seller_fk0" FromRole="SellingPoint" ToRole="Seller" />
+          <NavigationProperty Name="PriceControllers" Relationship="Self.PriceController_fk1" FromRole="SellingPoint" ToRole="PriceController" />
+          <NavigationProperty Name="Sellers" Relationship="Self.Seller_fk0" FromRole="SellingPoint" ToRole="Seller" />
           <NavigationProperty Name="SellingPointCategory" Relationship="Self.SellingPoint_fk0" FromRole="SellingPoint" ToRole="SellingPointCategory" />
         </EntityType>
         <EntityType Name="SellingPointCategory">
           <Key>
             <PropertyRef Name="SellingPointCategoryID" />
           </Key>
-          <Property Name="SellingPointCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="SellingPointCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SellingPointCategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="SellingPoint" Relationship="Self.SellingPoint_fk0" FromRole="SellingPointCategory" ToRole="SellingPoint" />
+          <NavigationProperty Name="SellingPoints" Relationship="Self.SellingPoint_fk0" FromRole="SellingPointCategory" ToRole="SellingPoint" />
         </EntityType>
         <EntityType Name="Shawarma">
           <Key>
             <PropertyRef Name="ShawarmaID" />
           </Key>
-          <Property Name="ShawarmaID" Type="Int32" Nullable="false" />
+          <Property Name="ShawarmaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ShawarmaName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CookingTime" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="PriceController" Relationship="Self.PriceController_fk0" FromRole="Shawarma" ToRole="PriceController" />
+          <NavigationProperty Name="PriceControllers" Relationship="Self.PriceController_fk0" FromRole="Shawarma" ToRole="PriceController" />
+          <NavigationProperty Name="ShawarmaRecipes" Relationship="Self.NewShawarmaRecipe_fk0" FromRole="Shawarma" ToRole="ShawarmaRecipe" />
           <NavigationProperty Name="OrderDetails" Relationship="Self.OrderDetails_fk1" FromRole="Shawarma" ToRole="OrderDetails" />
-          <NavigationProperty Name="ShawarmaRecipe" Relationship="Self.ShawarmaRecipe_fk0" FromRole="Shawarma" ToRole="ShawarmaRecipe" />
         </EntityType>
         <EntityType Name="ShawarmaRecipe">
           <Key>
             <PropertyRef Name="ShawarmaRecipeID" />
           </Key>
-          <Property Name="ShawarmaRecipeID" Type="Int32" Nullable="false" />
+          <Property Name="ShawarmaRecipeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ShawarmaID" Type="Int32" Nullable="false" />
           <Property Name="IngredientID" Type="Int32" Nullable="false" />
           <Property Name="Weight" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Ingredient" Relationship="Self.ShawarmaRecipe_fk1" FromRole="ShawarmaRecipe" ToRole="Ingredient" />
-          <NavigationProperty Name="Shawarma" Relationship="Self.ShawarmaRecipe_fk0" FromRole="ShawarmaRecipe" ToRole="Shawarma" />
+          <NavigationProperty Name="Ingredient" Relationship="Self.NewShawarmaRecipe_fk1" FromRole="ShawarmaRecipe" ToRole="Ingredient" />
+          <NavigationProperty Name="Shawarma" Relationship="Self.NewShawarmaRecipe_fk0" FromRole="ShawarmaRecipe" ToRole="Shawarma" />
         </EntityType>
         <EntityType Name="TimeController">
           <Key>
             <PropertyRef Name="TimeControllerID" />
           </Key>
-          <Property Name="TimeControllerID" Type="Int32" Nullable="false" />
+          <Property Name="TimeControllerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SellerID" Type="Int32" Nullable="false" />
           <Property Name="WorkStart" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="WorkEnd" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Seller" Relationship="Self.TimeController_fk0" FromRole="TimeController" ToRole="Seller" />
         </EntityType>
-        <EntityType Name="OrderDetails">
+        <EntityType Name="OrderDetail">
           <Key>
             <PropertyRef Name="OrderHeaderID" />
             <PropertyRef Name="ShawarmaID" />
@@ -429,7 +429,7 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ShawarmaRecipe_fk1">
+        <Association Name="NewShawarmaRecipe_fk1">
           <End Role="Ingredient" Type="Self.Ingredient" Multiplicity="1" />
           <End Role="ShawarmaRecipe" Type="Self.ShawarmaRecipe" Multiplicity="*" />
           <ReferentialConstraint>
@@ -443,7 +443,7 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
         </Association>
         <Association Name="OrderDetails_fk0">
           <End Role="OrderHeader" Type="Self.OrderHeader" Multiplicity="1" />
-          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="OrderHeader">
               <PropertyRef Name="OrderHeaderID" />
@@ -525,19 +525,7 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="OrderDetails_fk1">
-          <End Role="Shawarma" Type="Self.Shawarma" Multiplicity="1" />
-          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Shawarma">
-              <PropertyRef Name="ShawarmaID" />
-            </Principal>
-            <Dependent Role="OrderDetails">
-              <PropertyRef Name="ShawarmaID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ShawarmaRecipe_fk0">
+        <Association Name="NewShawarmaRecipe_fk0">
           <End Role="Shawarma" Type="Self.Shawarma" Multiplicity="1" />
           <End Role="ShawarmaRecipe" Type="Self.ShawarmaRecipe" Multiplicity="*" />
           <ReferentialConstraint>
@@ -549,61 +537,73 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="OrderDetails_fk1">
+          <End Role="Shawarma" Type="Self.Shawarma" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shawarma">
+              <PropertyRef Name="ShawarmaID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="ShawarmaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ShawarmaEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Ingredient" EntityType="Self.Ingredient" />
-          <EntitySet Name="IngredientCategory" EntityType="Self.IngredientCategory" />
-          <EntitySet Name="OrderHeader" EntityType="Self.OrderHeader" />
-          <EntitySet Name="PriceController" EntityType="Self.PriceController" />
-          <EntitySet Name="Seller" EntityType="Self.Seller" />
-          <EntitySet Name="SellingPoint" EntityType="Self.SellingPoint" />
-          <EntitySet Name="SellingPointCategory" EntityType="Self.SellingPointCategory" />
-          <EntitySet Name="Shawarma" EntityType="Self.Shawarma" />
-          <EntitySet Name="ShawarmaRecipe" EntityType="Self.ShawarmaRecipe" />
-          <EntitySet Name="TimeController" EntityType="Self.TimeController" />
-          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" />
+          <EntitySet Name="Ingredients" EntityType="Self.Ingredient" />
+          <EntitySet Name="IngredientCategories" EntityType="Self.IngredientCategory" />
+          <EntitySet Name="OrderHeaders" EntityType="Self.OrderHeader" />
+          <EntitySet Name="PriceControllers" EntityType="Self.PriceController" />
+          <EntitySet Name="Sellers" EntityType="Self.Seller" />
+          <EntitySet Name="SellingPoints" EntityType="Self.SellingPoint" />
+          <EntitySet Name="SellingPointCategories" EntityType="Self.SellingPointCategory" />
+          <EntitySet Name="Shawarmas" EntityType="Self.Shawarma" />
+          <EntitySet Name="ShawarmaRecipes" EntityType="Self.ShawarmaRecipe" />
+          <EntitySet Name="TimeControllers" EntityType="Self.TimeController" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
           <AssociationSet Name="Ingredient_fk0" Association="Self.Ingredient_fk0">
-            <End Role="IngredientCategory" EntitySet="IngredientCategory" />
-            <End Role="Ingredient" EntitySet="Ingredient" />
+            <End Role="IngredientCategory" EntitySet="IngredientCategories" />
+            <End Role="Ingredient" EntitySet="Ingredients" />
           </AssociationSet>
-          <AssociationSet Name="ShawarmaRecipe_fk1" Association="Self.ShawarmaRecipe_fk1">
-            <End Role="Ingredient" EntitySet="Ingredient" />
-            <End Role="ShawarmaRecipe" EntitySet="ShawarmaRecipe" />
+          <AssociationSet Name="NewShawarmaRecipe_fk1" Association="Self.NewShawarmaRecipe_fk1">
+            <End Role="Ingredient" EntitySet="Ingredients" />
+            <End Role="ShawarmaRecipe" EntitySet="ShawarmaRecipes" />
           </AssociationSet>
           <AssociationSet Name="OrderDetails_fk0" Association="Self.OrderDetails_fk0">
-            <End Role="OrderHeader" EntitySet="OrderHeader" />
+            <End Role="OrderHeader" EntitySet="OrderHeaders" />
             <End Role="OrderDetails" EntitySet="OrderDetails" />
           </AssociationSet>
           <AssociationSet Name="OrderHeader_fk0" Association="Self.OrderHeader_fk0">
-            <End Role="Seller" EntitySet="Seller" />
-            <End Role="OrderHeader" EntitySet="OrderHeader" />
+            <End Role="Seller" EntitySet="Sellers" />
+            <End Role="OrderHeader" EntitySet="OrderHeaders" />
           </AssociationSet>
           <AssociationSet Name="PriceController_fk0" Association="Self.PriceController_fk0">
-            <End Role="Shawarma" EntitySet="Shawarma" />
-            <End Role="PriceController" EntitySet="PriceController" />
+            <End Role="Shawarma" EntitySet="Shawarmas" />
+            <End Role="PriceController" EntitySet="PriceControllers" />
           </AssociationSet>
           <AssociationSet Name="PriceController_fk1" Association="Self.PriceController_fk1">
-            <End Role="SellingPoint" EntitySet="SellingPoint" />
-            <End Role="PriceController" EntitySet="PriceController" />
+            <End Role="SellingPoint" EntitySet="SellingPoints" />
+            <End Role="PriceController" EntitySet="PriceControllers" />
           </AssociationSet>
           <AssociationSet Name="Seller_fk0" Association="Self.Seller_fk0">
-            <End Role="SellingPoint" EntitySet="SellingPoint" />
-            <End Role="Seller" EntitySet="Seller" />
+            <End Role="SellingPoint" EntitySet="SellingPoints" />
+            <End Role="Seller" EntitySet="Sellers" />
           </AssociationSet>
           <AssociationSet Name="TimeController_fk0" Association="Self.TimeController_fk0">
-            <End Role="Seller" EntitySet="Seller" />
-            <End Role="TimeController" EntitySet="TimeController" />
+            <End Role="Seller" EntitySet="Sellers" />
+            <End Role="TimeController" EntitySet="TimeControllers" />
           </AssociationSet>
           <AssociationSet Name="SellingPoint_fk0" Association="Self.SellingPoint_fk0">
-            <End Role="SellingPointCategory" EntitySet="SellingPointCategory" />
-            <End Role="SellingPoint" EntitySet="SellingPoint" />
+            <End Role="SellingPointCategory" EntitySet="SellingPointCategories" />
+            <End Role="SellingPoint" EntitySet="SellingPoints" />
+          </AssociationSet>
+          <AssociationSet Name="NewShawarmaRecipe_fk0" Association="Self.NewShawarmaRecipe_fk0">
+            <End Role="Shawarma" EntitySet="Shawarmas" />
+            <End Role="ShawarmaRecipe" EntitySet="ShawarmaRecipes" />
           </AssociationSet>
           <AssociationSet Name="OrderDetails_fk1" Association="Self.OrderDetails_fk1">
-            <End Role="Shawarma" EntitySet="Shawarma" />
+            <End Role="Shawarma" EntitySet="Shawarmas" />
             <End Role="OrderDetails" EntitySet="OrderDetails" />
-          </AssociationSet>
-          <AssociationSet Name="ShawarmaRecipe_fk0" Association="Self.ShawarmaRecipe_fk0">
-            <End Role="Shawarma" EntitySet="Shawarma" />
-            <End Role="ShawarmaRecipe" EntitySet="ShawarmaRecipe" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -612,7 +612,7 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ShawarmaModelStoreContainer" CdmEntityContainer="ShawarmaEntities">
-          <EntitySetMapping Name="Ingredient">
+          <EntitySetMapping Name="Ingredients">
             <EntityTypeMapping TypeName="ShawarmaModel.Ingredient">
               <MappingFragment StoreEntitySet="Ingredient">
                 <ScalarProperty Name="IngredientID" ColumnName="IngredientID" />
@@ -622,7 +622,7 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="IngredientCategory">
+          <EntitySetMapping Name="IngredientCategories">
             <EntityTypeMapping TypeName="ShawarmaModel.IngredientCategory">
               <MappingFragment StoreEntitySet="IngredientCategory">
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
@@ -630,7 +630,7 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OrderHeader">
+          <EntitySetMapping Name="OrderHeaders">
             <EntityTypeMapping TypeName="ShawarmaModel.OrderHeader">
               <MappingFragment StoreEntitySet="OrderHeader">
                 <ScalarProperty Name="OrderHeaderID" ColumnName="OrderHeaderID" />
@@ -639,7 +639,7 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PriceController">
+          <EntitySetMapping Name="PriceControllers">
             <EntityTypeMapping TypeName="ShawarmaModel.PriceController">
               <MappingFragment StoreEntitySet="PriceController">
                 <ScalarProperty Name="PriceControllerID" ColumnName="PriceControllerID" />
@@ -650,7 +650,7 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Seller">
+          <EntitySetMapping Name="Sellers">
             <EntityTypeMapping TypeName="ShawarmaModel.Seller">
               <MappingFragment StoreEntitySet="Seller">
                 <ScalarProperty Name="SellerID" ColumnName="SellerID" />
@@ -659,7 +659,7 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SellingPoint">
+          <EntitySetMapping Name="SellingPoints">
             <EntityTypeMapping TypeName="ShawarmaModel.SellingPoint">
               <MappingFragment StoreEntitySet="SellingPoint">
                 <ScalarProperty Name="SellingPointID" ColumnName="SellingPointID" />
@@ -669,7 +669,7 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SellingPointCategory">
+          <EntitySetMapping Name="SellingPointCategories">
             <EntityTypeMapping TypeName="ShawarmaModel.SellingPointCategory">
               <MappingFragment StoreEntitySet="SellingPointCategory">
                 <ScalarProperty Name="SellingPointCategoryID" ColumnName="SellingPointCategoryID" />
@@ -677,7 +677,7 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Shawarma">
+          <EntitySetMapping Name="Shawarmas">
             <EntityTypeMapping TypeName="ShawarmaModel.Shawarma">
               <MappingFragment StoreEntitySet="Shawarma">
                 <ScalarProperty Name="ShawarmaID" ColumnName="ShawarmaID" />
@@ -686,7 +686,7 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ShawarmaRecipe">
+          <EntitySetMapping Name="ShawarmaRecipes">
             <EntityTypeMapping TypeName="ShawarmaModel.ShawarmaRecipe">
               <MappingFragment StoreEntitySet="ShawarmaRecipe">
                 <ScalarProperty Name="ShawarmaRecipeID" ColumnName="ShawarmaRecipeID" />
@@ -696,7 +696,7 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TimeController">
+          <EntitySetMapping Name="TimeControllers">
             <EntityTypeMapping TypeName="ShawarmaModel.TimeController">
               <MappingFragment StoreEntitySet="TimeController">
                 <ScalarProperty Name="TimeControllerID" ColumnName="TimeControllerID" />
@@ -707,7 +707,7 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderDetails">
-            <EntityTypeMapping TypeName="ShawarmaModel.OrderDetails">
+            <EntityTypeMapping TypeName="ShawarmaModel.OrderDetail">
               <MappingFragment StoreEntitySet="OrderDetails">
                 <ScalarProperty Name="OrderHeaderID" ColumnName="OrderHeaderID" />
                 <ScalarProperty Name="ShawarmaID" ColumnName="ShawarmaID" />
@@ -729,7 +729,7 @@ warning 6002: The table/view 'Shawarma.dbo.OrderDetails' does not have a primary
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

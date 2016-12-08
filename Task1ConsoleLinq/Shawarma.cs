@@ -17,9 +17,9 @@ namespace Task1ConsoleLinq
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Shawarma()
         {
-            this.PriceController = new HashSet<PriceController>();
-            this.OrderDetails = new HashSet<OrderDetails>();
-            this.ShawarmaRecipe = new HashSet<ShawarmaRecipe>();
+            this.PriceControllers = new HashSet<PriceController>();
+            this.ShawarmaRecipes = new HashSet<ShawarmaRecipe>();
+            this.OrderDetails = new HashSet<OrderDetail>();
         }
     
         public int ShawarmaID { get; set; }
@@ -27,10 +27,10 @@ namespace Task1ConsoleLinq
         public int CookingTime { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PriceController> PriceController { get; set; }
+        public virtual ICollection<PriceController> PriceControllers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
+        public virtual ICollection<ShawarmaRecipe> ShawarmaRecipes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ShawarmaRecipe> ShawarmaRecipe { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

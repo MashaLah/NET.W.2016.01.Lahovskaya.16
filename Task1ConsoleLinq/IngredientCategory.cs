@@ -17,13 +17,13 @@ namespace Task1ConsoleLinq
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public IngredientCategory()
         {
-            this.Ingredient = new HashSet<Ingredient>();
+            this.Ingredients = new HashSet<Ingredient>();
         }
     
         public int CategoryID { get; set; }
         public string CategoryName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ingredient> Ingredient { get; set; }
+        public virtual ICollection<Ingredient> Ingredients { get; set; }
     }
 }

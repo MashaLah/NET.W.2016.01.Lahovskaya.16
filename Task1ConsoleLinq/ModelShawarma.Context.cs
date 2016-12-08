@@ -25,16 +25,16 @@ namespace Task1ConsoleLinq
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Ingredient> Ingredient { get; set; }
-        public virtual DbSet<IngredientCategory> IngredientCategory { get; set; }
-        public virtual DbSet<OrderHeader> OrderHeader { get; set; }
-        public virtual DbSet<PriceController> PriceController { get; set; }
-        public virtual DbSet<Seller> Seller { get; set; }
-        public virtual DbSet<SellingPoint> SellingPoint { get; set; }
-        public virtual DbSet<SellingPointCategory> SellingPointCategory { get; set; }
-        public virtual DbSet<Shawarma> Shawarma { get; set; }
-        public virtual DbSet<ShawarmaRecipe> ShawarmaRecipe { get; set; }
-        public virtual DbSet<TimeController> TimeController { get; set; }
-        public virtual DbSet<OrderDetails> OrderDetails { get; set; }
+        public virtual DbSet<Ingredient> Ingredients { get; set; }
+        public virtual DbSet<IngredientCategory> IngredientCategories { get; set; }
+        public virtual DbSet<OrderHeader> OrderHeaders { get; set; }
+        public virtual DbSet<PriceController> PriceControllers { get; set; }
+        public virtual DbSet<Seller> Sellers { get; set; }
+        public virtual DbSet<SellingPoint> SellingPoints { get; set; }
+        public virtual DbSet<SellingPointCategory> SellingPointCategories { get; set; }
+        public virtual DbSet<Shawarma> Shawarmas { get; set; }
+        public virtual DbSet<ShawarmaRecipe> ShawarmaRecipes { get; set; }
+        public virtual DbSet<TimeController> TimeControllers { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
     }
 }

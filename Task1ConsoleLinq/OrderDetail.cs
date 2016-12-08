@@ -12,7 +12,7 @@ namespace Task1ConsoleLinq
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderDetails
+    public partial class OrderDetail
     {
         public int OrderHeaderID { get; set; }
         public int ShawarmaID { get; set; }
