@@ -1,0 +1,42 @@
+﻿@model Task1.SellingPoint
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SellingPoint</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Adress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShawarmaTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShawarmaTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SellingPointCategory.SellingPointCategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SellingPointCategory.SellingPointCategoryName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SellingPointID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

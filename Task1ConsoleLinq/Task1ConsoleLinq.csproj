@@ -64,7 +64,6 @@
     <Compile Include="IngredientCategory.cs">
       <DependentUpon>ModelShawarma.tt</DependentUpon>
     </Compile>
-    <Compile Include="LinqQueries.cs" />
     <Compile Include="ModelShawarma.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
